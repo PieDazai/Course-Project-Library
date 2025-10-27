@@ -1,0 +1,135 @@
+﻿<Window x:Class="UI.ReaderTicketWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+        Title="Читательский билет" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" 
+                   Text="Читательский билет" 
+                   FontSize="20" FontWeight="Bold" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,0,0,20"/>
+
+        <Border Grid.Row="1" 
+                BorderBrush="LightGray" 
+                BorderThickness="1" 
+                Background="LightYellow" 
+                Padding="10" 
+                Margin="0,0,0,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" 
+                           Text="Читатель:" 
+                           FontWeight="Bold" 
+                           Margin="0,0,5,5"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" 
+                           x:Name="ReaderNameText" 
+                           Margin="0,0,0,5"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="2" 
+                           Text="Номер билета:" 
+                           FontWeight="Bold" 
+                           Margin="10,0,5,5"/>
+                <TextBlock Grid.Row="0" Grid.Column="3" 
+                           x:Name="TicketNumberText" 
+                           Margin="0,0,0,5"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" 
+                           Text="Категория:" 
+                           FontWeight="Bold" 
+                           Margin="0,0,5,0"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" 
+                           x:Name="CategoryText" 
+                           Margin="0,0,0,0"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="2" 
+                           Text="Скидка:" 
+                           FontWeight="Bold" 
+                           Margin="10,0,5,0"/>
+                <TextBlock Grid.Row="1" Grid.Column="3" 
+                           x:Name="DiscountText" 
+                           Margin="0,0,0,0"/>
+            </Grid>
+        </Border>
+
+        <GroupBox Grid.Row="2" 
+                  Header="Книги в прокате" 
+                  Margin="0,0,0,15">
+            <DataGrid x:Name="LoansDataGrid" 
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      SelectionMode="Single"
+                      SelectionChanged="LoansDataGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID проката" 
+                                      Binding="{Binding Id}" 
+                                      Width="80"/>
+                    <DataGridTextColumn Header="Название книги" 
+                                      Binding="{Binding Book.Title}" 
+                                      Width="200"/>
+                    <DataGridTextColumn Header="Автор" 
+                                      Binding="{Binding Book.Author}" 
+                                      Width="150"/>
+                    <DataGridTextColumn Header="Дата выдачи" 
+                                      Binding="{Binding Issuance_date, StringFormat=dd.MM.yyyy}" 
+                                      Width="100"/>
+                    <DataGridTextColumn Header="Ожидаемая дата возврата" 
+                                      Binding="{Binding ExpectedReturnDate, StringFormat=dd.MM.yyyy}" 
+                                      Width="150"/>
+                    <DataGridTextColumn Header="Статус" 
+                                      Binding="{Binding Status}" 
+                                      Width="100"/>
+                    <DataGridTextColumn Header="Стоимость проката" 
+                                      Binding="{Binding Final_price, StringFormat={}{0} руб.}" 
+                                      Width="120"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+        <StackPanel Grid.Row="3" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right">
+
+            <Button x:Name="IssueBookButton" 
+                    Content="Выдать книгу" 
+                    Padding="15,5"
+                    Margin="0,0,10,0"
+                    Click="IssueBookButton_Click"/>
+
+            <Button x:Name="ReturnBookButton" 
+                    Content="Принять книгу" 
+                    Padding="15,5"
+                    Margin="0,0,10,0"
+                    Click="ReturnBookButton_Click"
+                    IsEnabled="False"/>
+
+            <Button x:Name="CloseButton" 
+                    Content="Закрыть" 
+                    Padding="15,5"
+                    Click="CloseButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

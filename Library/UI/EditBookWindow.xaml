@@ -1,0 +1,191 @@
+﻿<Window x:Class="UI.EditBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+        Title="Редактирование книги" Height="600" Width="700"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" 
+                   x:Name="WindowTitleText"
+                   Text="Добавление новой книги" 
+                   FontSize="20" FontWeight="Bold" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,0,0,20"/>
+
+        <ScrollViewer Grid.Row="1" 
+                      VerticalScrollBarVisibility="Auto" 
+                      Margin="0,0,0,20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" 
+                           Text="Название книги:*" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,10"/>
+                <TextBox Grid.Row="0" Grid.Column="1" 
+                         x:Name="TitleTextBox" 
+                         Height="30" 
+                         Padding="5"
+                         Margin="0,0,0,10"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" 
+                           Text="Автор:*" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,10"/>
+                <TextBox Grid.Row="1" Grid.Column="1" 
+                         x:Name="AuthorTextBox" 
+                         Height="30" 
+                         Padding="5"
+                         Margin="0,0,0,10"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" 
+                           Text="Жанр:*" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,10"/>
+                <ComboBox Grid.Row="2" Grid.Column="1" 
+                          x:Name="GenreComboBox" 
+                          Height="30" 
+                          Padding="5"
+                          IsEditable="True"
+                          Margin="0,0,0,10"/>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" 
+                           Text="Год издания:*" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,10"/>
+                <TextBox Grid.Row="3" Grid.Column="1" 
+                         x:Name="YearTextBox" 
+                         Height="30" 
+                         Padding="5"
+                         MaxLength="4"
+                         Margin="0,0,0,10"/>
+
+                <TextBlock Grid.Row="4" Grid.Column="0" 
+                           Text="Стоимость проката:*" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,10"/>
+                <StackPanel Grid.Row="4" Grid.Column="1" 
+                            Orientation="Horizontal" 
+                            Margin="0,0,0,10">
+                    <TextBox x:Name="RentalCostTextBox" 
+                             Width="100" 
+                             Height="30" 
+                             Padding="5"/>
+                    <TextBlock Text="руб. / день" 
+                               VerticalAlignment="Center" 
+                               Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <TextBlock Grid.Row="5" Grid.Column="0" 
+                           Text="Залоговая стоимость:*" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,10"/>
+                <StackPanel Grid.Row="5" Grid.Column="1" 
+                            Orientation="Horizontal" 
+                            Margin="0,0,0,10">
+                    <TextBox x:Name="DepositTextBox" 
+                             Width="100" 
+                             Height="30" 
+                             Padding="5"/>
+                    <TextBlock Text="руб." 
+                               VerticalAlignment="Center" 
+                               Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <TextBlock Grid.Row="6" Grid.Column="0" 
+                           Text="Общее количество:*" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,10"/>
+                <TextBox Grid.Row="6" Grid.Column="1" 
+                         x:Name="TotalCopiesTextBox" 
+                         Width="100" 
+                         Height="30" 
+                         Padding="5"
+                         HorizontalAlignment="Left"
+                         Margin="0,0,0,10"/>
+                
+                <TextBlock Grid.Row="7" Grid.Column="0" 
+                           Text="Доступно:*" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,10"/>
+                <TextBox Grid.Row="7" Grid.Column="1" 
+                         x:Name="AvailableCopiesTextBox" 
+                         Width="100" 
+                         Height="30" 
+                         Padding="5"
+                         HorizontalAlignment="Left"
+                         Margin="0,0,0,10"/>
+
+                <TextBlock Grid.Row="8" Grid.Column="0" 
+                           Text="Номер стеллажа:*" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,10"/>
+                <TextBox Grid.Row="8" Grid.Column="1" 
+                         x:Name="RackNumberTextBox" 
+                         Width="100" 
+                         Height="30" 
+                         Padding="5"
+                         HorizontalAlignment="Left"
+                         Margin="0,0,0,10"/>
+
+                <Border Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
+                        x:Name="ValidationBorder" 
+                        BorderBrush="LightGray" 
+                        BorderThickness="1" 
+                        Background="White" 
+                        Padding="10" 
+                        Margin="0,10,0,0">
+                    <TextBlock x:Name="ValidationText" 
+                               Text="Заполните все обязательные поля" 
+                               Foreground="Gray" 
+                               TextWrapping="Wrap"/>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right">
+
+            <Button x:Name="SaveButton" 
+                    Content="Сохранить" 
+                    Padding="20,10"
+                    Margin="0,0,15,0"
+                    Background="Green"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    IsEnabled="False"/>
+
+            <Button x:Name="CloseButton" 
+                    Content="Закрыть" 
+                    Padding="20,10"
+                    Click="CloseButtonClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

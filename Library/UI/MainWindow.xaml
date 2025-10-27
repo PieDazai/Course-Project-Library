@@ -14,12 +14,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Заголовок -->
         <TextBlock Grid.Row="0" Text="Библиотечная система проката книг" 
                    FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" 
                    Margin="10" Foreground="DarkBlue"/>
 
-        <!-- Основная область с кнопками -->
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
             <Button x:Name="btnCatalog" Content="Каталог книг" 
                     Height="40" Margin="10,5" FontSize="14" 
@@ -28,14 +26,6 @@
             <Button x:Name="btnReaders" Content="Читатели" 
                     Height="40" Margin="10,5" FontSize="14"
                     Click="User_Click" Background="LightSteelBlue"/>
-
-            <Button x:Name="btnIssueBook" Content="Выдать книгу" 
-                    Height="40" Margin="10,5" FontSize="14"
-                    Click="IssueBook_Click" Background="LightGreen"/>
-
-            <Button x:Name="btnReturnBook" Content="Принять книгу" 
-                    Height="40" Margin="10,5" FontSize="14"
-                    Click="ReturnBook_Click" Background="LightCoral"/>
 
             <Button x:Name="btnExit" Content="Выход" 
                     Height="40" Margin="10,5" FontSize="14"

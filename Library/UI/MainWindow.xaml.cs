@@ -17,21 +17,14 @@ namespace UI
 
         private void User_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void IssueBook_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ReturnBook_Click(object sender, RoutedEventArgs e)
-        {
+            ReaderWindow readerWindow = new ReaderWindow();
+            readerWindow.Show();
 
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
+            Close();
 
         }
     }
