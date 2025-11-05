@@ -41,58 +41,58 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" 
                            Text="Название книги:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
+                           VerticalAlignment="Top" 
+                           Margin="0,7,10,0"/>
                 <TextBox Grid.Row="0" Grid.Column="1" 
                          x:Name="TitleTextBox" 
                          Height="30" 
                          Padding="5"
-                         Margin="0,0,0,10"/>
+                         Margin="0,0,0,10" Grid.ColumnSpan="2"/>
 
                 <TextBlock Grid.Row="1" Grid.Column="0" 
                            Text="Автор:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
+                           VerticalAlignment="Top" 
+                           Margin="0,7,10,0"/>
                 <TextBox Grid.Row="1" Grid.Column="1" 
                          x:Name="AuthorTextBox" 
                          Height="30" 
                          Padding="5"
-                         Margin="0,0,0,10"/>
+                         Margin="0,0,0,10" Grid.ColumnSpan="2"/>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" 
                            Text="Жанр:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
-                <ComboBox Grid.Row="2" Grid.Column="1" 
-                          x:Name="GenreComboBox" 
+                           VerticalAlignment="Top" 
+                           Margin="0,7,10,0"/>
+                <TextBox Grid.Row="2" Grid.Column="1" 
+                          x:Name="GenreTextBox" 
                           Height="30" 
                           Padding="5"
-                          IsEditable="True"
-                          Margin="0,0,0,10"/>
+                          Margin="0,0,0,10" Grid.ColumnSpan="2"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" 
                            Text="Год издания:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
+                           VerticalAlignment="Top" 
+                           Margin="0,7,10,0"/>
                 <TextBox Grid.Row="3" Grid.Column="1" 
                          x:Name="YearTextBox" 
                          Height="30" 
                          Padding="5"
-                         MaxLength="4"
-                         Margin="0,0,0,10"/>
+
+                         Margin="0,0,0,10" Grid.ColumnSpan="2"/>
 
                 <TextBlock Grid.Row="4" Grid.Column="0" 
                            Text="Стоимость проката:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
+                           VerticalAlignment="Top" 
+                           Margin="0,7,10,0"/>
                 <StackPanel Grid.Row="4" Grid.Column="1" 
                             Orientation="Horizontal" 
-                            Margin="0,0,0,10">
+                            Margin="0,0,0,10" Grid.ColumnSpan="2">
                     <TextBox x:Name="RentalCostTextBox" 
                              Width="100" 
                              Height="30" 
@@ -104,11 +104,11 @@
 
                 <TextBlock Grid.Row="5" Grid.Column="0" 
                            Text="Залоговая стоимость:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
+                           VerticalAlignment="Top" 
+                           Margin="0,7,10,0"/>
                 <StackPanel Grid.Row="5" Grid.Column="1" 
                             Orientation="Horizontal" 
-                            Margin="0,0,0,10">
+                            Margin="0,0,0,10" Grid.ColumnSpan="2">
                     <TextBox x:Name="DepositTextBox" 
                              Width="100" 
                              Height="30" 
@@ -120,8 +120,8 @@
 
                 <TextBlock Grid.Row="6" Grid.Column="0" 
                            Text="Общее количество:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
+                           VerticalAlignment="Top" 
+                           Margin="0,7,10,0"/>
                 <TextBox Grid.Row="6" Grid.Column="1" 
                          x:Name="TotalCopiesTextBox" 
                          Width="100" 
@@ -129,11 +129,11 @@
                          Padding="5"
                          HorizontalAlignment="Left"
                          Margin="0,0,0,10"/>
-                
+
                 <TextBlock Grid.Row="7" Grid.Column="0" 
                            Text="Доступно:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
+                           VerticalAlignment="Top" 
+                           Margin="0,7,10,0"/>
                 <TextBox Grid.Row="7" Grid.Column="1" 
                          x:Name="AvailableCopiesTextBox" 
                          Width="100" 
@@ -144,8 +144,8 @@
 
                 <TextBlock Grid.Row="8" Grid.Column="0" 
                            Text="Номер стеллажа:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
+                           VerticalAlignment="Top" 
+                           Margin="0,7,10,0"/>
                 <TextBox Grid.Row="8" Grid.Column="1" 
                          x:Name="RackNumberTextBox" 
                          Width="100" 
@@ -154,7 +154,7 @@
                          HorizontalAlignment="Left"
                          Margin="0,0,0,10"/>
 
-                <Border Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
+                <Border Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3"
                         x:Name="ValidationBorder" 
                         BorderBrush="LightGray" 
                         BorderThickness="1" 
@@ -180,7 +180,8 @@
                     Background="Green"
                     Foreground="White"
                     FontWeight="Bold"
-                    IsEnabled="False"/>
+                    IsEnabled="True"
+                    Click="CaveButtonClick"/>
 
             <Button x:Name="CloseButton" 
                     Content="Закрыть" 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="Читатели библиотеки" Height="600" Width="900"
+        Title="Читатели библиотеки" Height="500" Width="700"
         WindowStartupLocation="CenterScreen">
 
     <Grid Margin="10">
@@ -22,14 +22,34 @@
                    Margin="0,0,0,20"/>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,15">
-            <TextBlock Text="Поиск:" 
+
+
+            <TextBlock Text="№ билета:" 
                        VerticalAlignment="Center" 
                        Margin="0,0,10,0"/>
-            <TextBox x:Name="SearchTextBox" 
+            <TextBox x:Name="SearchTicketNumber" 
+                     Margin="0,0,10,0"
+                     Width="50" 
+                     Height="30"
+                     Padding="5"/>
+            
+            <TextBlock Text="ФИО:" 
+                       VerticalAlignment="Center" 
+                       Margin="0,0,10,0"/>
+            <TextBox x:Name="SearchFullName" 
+                     Margin="0,0,10,0"
                      Width="200" 
-                     Height="25"
-                     Padding="5"
-                     TextChanged="SearchTextBox_TextChanged"/>
+                     Height="30"
+                     Padding="5"/>
+            
+            <TextBlock Text="Номер:" 
+                       VerticalAlignment="Center" 
+                       Margin="0,0,10,0"/>
+            <TextBox x:Name="SearchPhoneNumber" 
+                     Width="100" 
+                     Height="30"
+                     Padding="5"/>
+
             <Button x:Name="SearchButton" 
                     Content="Поиск" 
                     Margin="10,0,0,0"
@@ -47,26 +67,25 @@
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
+                  IsReadOnly="True"
                   SelectionMode="Single"
-                  SelectionChanged="ReadersDataGrid_SelectionChanged">
+                  SelectionChanged="Reader_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" 
-                                    Binding="{Binding Id}" 
-                                    Width="50"/>
+
                 <DataGridTextColumn Header="ФИО" 
                                     Binding="{Binding FullName}" 
-                                    Width="200"/>
+                                    Width="180"/>
                 <DataGridTextColumn Header="Адрес" 
                                     Binding="{Binding Address}" 
-                                    Width="150"/>
+                                    Width="130"/>
                 <DataGridTextColumn Header="Телефон" 
                                     Binding="{Binding PhoneNumber}" 
                                     Width="120"/>
                 <DataGridTextColumn Header="Email" 
                                     Binding="{Binding Email}" 
-                                    Width="150"/>
-                <DataGridTextColumn Header="Категория" 
-                                    Binding="{Binding ReaderCategory.Denomination}" 
+                                    Width="120"/>
+                <DataGridTextColumn Header="Дата рождения" 
+                                    Binding="{Binding BirthDate, StringFormat='dd.MM.yyyy'}" 
                                     Width="100"/>
             </DataGrid.Columns>
         </DataGrid>

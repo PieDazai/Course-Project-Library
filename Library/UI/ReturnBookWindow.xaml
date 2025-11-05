@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="Возврат книги" Height="600" Width="900"
-        WindowStartupLocation="CenterScreen">
+        Title="Возврат книги" Height="500" Width="800"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        MinWidth="800" MinHeight="500">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -22,14 +23,14 @@
                    Text="Возврат книги" 
                    FontSize="20" FontWeight="Bold" 
                    HorizontalAlignment="Center" 
-                   Margin="0,0,0,20"/>
+                   Margin="0,0,0,15"/>
 
         <Border Grid.Row="1" 
                 BorderBrush="LightBlue" 
                 BorderThickness="1" 
                 Background="AliceBlue" 
                 Padding="10" 
-                Margin="0,0,0,15">
+                Margin="0,0,0,10">
             <StackPanel>
                 <TextBlock Text="Информация о читателе:" 
                            FontWeight="Bold" 
@@ -66,7 +67,7 @@
                 BorderThickness="1" 
                 Background="Honeydew" 
                 Padding="10" 
-                Margin="0,0,0,15">
+                Margin="0,0,0,10">
             <StackPanel>
                 <TextBlock Text="Информация о книге:" 
                            FontWeight="Bold" 
@@ -91,29 +92,21 @@
                                x:Name="BookTitleText" 
                                Margin="0,0,15,2"/>
 
-                    <TextBlock Grid.Row="0" Grid.Column="2" 
+                    <TextBlock Grid.Row="1" Grid.Column="0" 
                                Text="Автор:" 
                                FontWeight="Bold" 
                                Margin="0,0,5,2"/>
-                    <TextBlock Grid.Row="0" Grid.Column="3" 
+                    <TextBlock Grid.Row="1" Grid.Column="1" 
                                x:Name="BookAuthorText" 
                                Margin="0,0,0,2"/>
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" 
+                    <TextBlock Grid.Row="0" Grid.Column="2" 
                                Text="Дата выдачи:" 
                                FontWeight="Bold" 
                                Margin="0,0,5,0"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" 
+                    <TextBlock Grid.Row="0" Grid.Column="3" 
                                x:Name="IssueDateText" 
                                Margin="0,0,15,0"/>
-
-                    <TextBlock Grid.Row="1" Grid.Column="2" 
-                               Text="Срок проката:" 
-                               FontWeight="Bold" 
-                               Margin="0,0,5,0"/>
-                    <TextBlock Grid.Row="1" Grid.Column="3" 
-                               x:Name="RentalPeriodText" 
-                               Margin="0,0,0,0"/>
                 </Grid>
             </StackPanel>
         </Border>
@@ -195,11 +188,11 @@
                                Margin="0,0,0,5"/>
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                        <CheckBox x:Name="DamageCheckBox" 
+                        <CheckBox x:Name="DamageCheckBox"
                                   Content="Повреждение книги" 
                                   Margin="0,0,10,0"
                                   Checked="DamageCheckBox_Changed"
-                                  Unchecked="DamageCheckBox_Changed"/>
+                                  Unchecked="DamageUnCheckBox_Changed"/>
                         <TextBox x:Name="DamageAmountTextBox" 
                                  Width="80" 
                                  Height="25"
@@ -238,47 +231,10 @@
             </Grid>
         </GroupBox>
 
-        <Border Grid.Row="4" 
-                BorderBrush="Gold" 
-                BorderThickness="1" 
-                Background="LightYellow" 
-                Padding="10" 
-                Margin="0,0,0,15">
-            <StackPanel>
-                <TextBlock Text="Возврат залога:" 
-                           FontWeight="Bold" 
-                           Margin="0,0,0,5"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0" 
-                               Text="Сумма залога:" 
-                               Margin="0,0,5,0"/>
-                    <TextBlock Grid.Column="1" 
-                               x:Name="DepositAmountText" 
-                               Margin="0,0,15,0"/>
-
-                    <TextBlock Grid.Column="2" 
-                               Text="К возврату:" 
-                               FontWeight="Bold" 
-                               Margin="0,0,5,0"/>
-                    <TextBlock Grid.Column="3" 
-                               x:Name="DepositReturnText" 
-                               FontWeight="Bold" 
-                               FontSize="14" 
-                               Foreground="Blue"/>
-                </Grid>
-            </StackPanel>
-        </Border>
-
-        <StackPanel Grid.Row="5" 
+        <StackPanel Grid.Row="4" 
                     Orientation="Horizontal" 
-                    HorizontalAlignment="Right">
+                    HorizontalAlignment="Right"
+                    Margin="0,10,0,0">
 
             <Button x:Name="ReturnBookButton" 
                     Content="Оформить возврат" 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="Редактирование читателя" Height="500" Width="600"
+        Title="Редактирование читателя" Height="450" Width="600"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
@@ -23,104 +23,80 @@
                    HorizontalAlignment="Center" 
                    Margin="0,0,0,20"/>
 
-        <ScrollViewer Grid.Row="1" 
-                      VerticalScrollBarVisibility="Auto" 
-                      Margin="0,0,0,20">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" 
-                           Text="ФИО:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
-                <TextBox Grid.Row="0" Grid.Column="1" 
-                         x:Name="FullNameTextBox" 
+            <TextBlock Grid.Row="0" Grid.Column="0" 
+                       Text="ФИО:*" 
+                       VerticalAlignment="Center" 
+                       Margin="0,0,10,10"/>
+            <TextBox Grid.Row="0" Grid.Column="1" 
+                     x:Name="FullNameTextBox" 
+                     Height="30" 
+                     Padding="5"
+                     Margin="0,0,0,10"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" 
+                       Text="Адрес:*" 
+                       VerticalAlignment="Center" 
+                       Margin="0,0,10,10"/>
+            <TextBox Grid.Row="1" Grid.Column="1" 
+                     x:Name="AddressTextBox" 
+                     Height="30" 
+                     Padding="5"
+                     Margin="0,0,0,10"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" 
+                       Text="Телефон:*" 
+                       VerticalAlignment="Center" 
+                       Margin="0,0,10,10"/>
+            <StackPanel Grid.Row="2" Grid.Column="1" 
+                        Orientation="Vertical"
+                        Margin="0,0,0,10">
+                <TextBox x:Name="PhoneTextBox" 
                          Height="30" 
-                         Padding="5"
-                         Margin="0,0,0,10"/>
+                         Padding="5"/>
+                <TextBlock Text="Номер телефона (11 цифр)" 
+                           FontSize="10" 
+                           Foreground="Gray" 
+                           Margin="5,2,0,0"/>
+            </StackPanel>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" 
-                           Text="Адрес:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
-                <TextBox Grid.Row="1" Grid.Column="1" 
-                         x:Name="AddressTextBox" 
-                         Height="30" 
-                         Padding="5"
-                         Margin="0,0,0,10"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" 
+                       Text="Email:" 
+                       VerticalAlignment="Center" 
+                       Margin="0,0,10,10"/>
+            <TextBox Grid.Row="3" Grid.Column="1" 
+                     x:Name="EmailTextBox" 
+                     Height="30" 
+                     Padding="5"
+                     Margin="0,0,0,10"/>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" 
-                           Text="Телефон:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
-                <TextBox Grid.Row="2" Grid.Column="1" 
-                         x:Name="PhoneTextBox" 
-                         Height="30" 
-                         Padding="5"
-                         Margin="0,0,0,10"/>
-
-
-                <TextBlock Grid.Row="3" Grid.Column="0" 
-                           Text="Email:" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
-                <TextBox Grid.Row="3" Grid.Column="1" 
-                         x:Name="EmailTextBox" 
-                         Height="30" 
-                         Padding="5"
-                         Margin="0,0,0,10"/>
-
-                <TextBlock Grid.Row="4" Grid.Column="0" 
-                           Text="Дата рождения:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
-                <DatePicker Grid.Row="4" Grid.Column="1" 
-                           x:Name="BirthDatePicker" 
-                           Height="30" 
-                           Margin="0,0,0,10"/>
-
-                <TextBlock Grid.Row="5" Grid.Column="0" 
-                           Text="Категория:*" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,10"/>
-                <ComboBox Grid.Row="5" Grid.Column="1" 
-                          x:Name="CategoryComboBox" 
-                          Height="30" 
-                          Padding="5"
-                          DisplayMemberPath="Denomination"
-                          Margin="0,0,0,10"/>
-
-                <Border Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
-                        x:Name="ValidationBorder" 
-                        BorderBrush="LightGray" 
-                        BorderThickness="1" 
-                        Background="White" 
-                        Padding="10" 
-                        Margin="0,10,0,0">
-                    <TextBlock x:Name="ValidationText" 
-                               Text="Заполните все обязательные поля" 
-                               Foreground="Gray" 
-                               TextWrapping="Wrap"/>
-                </Border>
-            </Grid>
-        </ScrollViewer>
+            <TextBlock Grid.Row="4" Grid.Column="0" 
+                       Text="Дата рождения:*" 
+                       VerticalAlignment="Center" 
+                       Margin="0,0,10,10"/>
+            <DatePicker Grid.Row="4" Grid.Column="1" 
+                       x:Name="BirthDateTextBox" 
+                       Height="30" 
+                       Margin="0,0,0,10"/>
+        </Grid>
 
         <StackPanel Grid.Row="2" 
                     Orientation="Horizontal" 
-                    HorizontalAlignment="Right">
-
+                    HorizontalAlignment="Right"
+                    Margin="0,10,0,0">
             <Button x:Name="SaveButton" 
                     Content="Сохранить" 
                     Padding="20,10"
@@ -128,11 +104,13 @@
                     Background="Green"
                     Foreground="White"
                     FontWeight="Bold"
-                    IsEnabled="False"/>
+                    Click="SaveReader_Click"/>
 
             <Button x:Name="CloseButton" 
                     Content="Закрыть" 
-                    Padding="20,10"/>
+                    Background="PaleVioletRed"
+                    Padding="20,10"
+                    Click="Close_Click"/>
         </StackPanel>
     </Grid>
 </Window>

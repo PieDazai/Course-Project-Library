@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-       Title="Каталог книг" Height="450" Width="800"
+       Title="Каталог книг" Height="450" Width="850"
        WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -15,40 +15,55 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Заголовок -->
         <TextBlock Grid.Row="0" Text="Каталог книг" 
                   FontSize="18" FontWeight="Bold" 
                   HorizontalAlignment="Center" Margin="0,0,0,10"/>
 
-        <!-- Панель поиска и фильтров -->
+        <!-- Панель поиска -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBlock Text="Поиск:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-            <TextBox x:Name="txtSearch" Width="200" Height="25" 
-                    TextChanged="Search_TextChanged"
-                    ToolTip="Поиск по названию или автору"/>
+            <!-- Поиск по названию -->
+            <TextBlock Text="Название:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox x:Name="txtTitleSearch" Width="150" Height="25" 
+                    ToolTip="Поиск по названию книги"/>
 
+            <!-- Поиск по автору -->
+            <TextBlock Text="Автор:" VerticalAlignment="Center" Margin="20,0,5,0"/>
+            <TextBox x:Name="txtAuthorSearch" Width="150" Height="25"
+                    ToolTip="Поиск по автору книги"/>
+
+            <!-- Поиск по жанру -->
             <TextBlock Text="Жанр:" VerticalAlignment="Center" Margin="20,0,5,0"/>
-            <ComboBox x:Name="cmbGenre" Width="150" Height="25"
-                     SelectionChanged="Genre_SelectionChanged"/>
+            <TextBox x:Name="txtGenreSearch" Width="120" Height="25"
+                     ToolTip="Фильтр по жанру книги"/>
 
+            <!-- Кнопки -->
+            <Button x:Name="btnSearch" Content="Поиск" 
+                   Margin="10,0,0,0" Width="70" Height="25"
+                   Click="Search_Click"/>
+            
             <Button x:Name="btnClearFilters" Content="Сбросить" 
-                   Margin="20,0,0,0" Width="80" Height="25"
+                   Margin="10,0,0,0" Width="70" Height="25"
                    Click="ClearFilters_Click"/>
+            
         </StackPanel>
 
-        <!-- Таблица с книгами -->
+        <!-- Таблица книг -->
         <DataGrid x:Name="DataGridBooks" Grid.Row="2" 
                  AutoGenerateColumns="False" 
                  CanUserAddRows="False"
+                 IsReadOnly="True"
                  SelectionMode="Single"
                  SelectionChanged="Books_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="200"/>
-                <DataGridTextColumn Header="Автор" Binding="{Binding Author}" Width="150"/>
-                <DataGridTextColumn Header="Жанр" Binding="{Binding Genre}" Width="120"/>
-                <DataGridTextColumn Header="Доступно" Binding="{Binding Count}" Width="70"/>
-                <DataGridTextColumn Header="Всего" Binding="{Binding Count}" Width="70"/>
-                <DataGridTextColumn Header="Стеллаж" Binding="{Binding RackNumber}" Width="70"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="135"/>
+                <DataGridTextColumn Header="Автор" Binding="{Binding Author}" Width="135"/>
+                <DataGridTextColumn Header="Жанр" Binding="{Binding Genre}" Width="100"/>
+                <DataGridTextColumn Header="Год издания" Binding="{Binding PublishedYear}" Width="80"/>
+                <DataGridTextColumn Header="Доступно" Binding="{Binding AvailableCopies}" Width="70"/>
+                <DataGridTextColumn Header="Всего" Binding="{Binding TotalCopies}" Width="60"/>
+                <DataGridTextColumn Header="Стеллаж" Binding="{Binding RackNumber}" Width="60"/>
+                <DataGridTextColumn Header="Стоимость проката" Binding="{Binding RentalCost, StringFormat={}{0} руб/день}" Width="120"/>
+                <DataGridTextColumn Header="Депозит" Binding="{Binding Deposit, StringFormat={}{0} руб}" Width="60"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -70,7 +85,7 @@
 
             <Button x:Name="btnClose" Content="Закрыть" 
                    Width="80" Height="30"
-                   Click="Close_Click" Background="LightGray"/>
+                   Click="Close_Click" Background="PaleVioletRed"/>
         </StackPanel>
     </Grid>
 </Window>

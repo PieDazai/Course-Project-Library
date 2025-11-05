@@ -17,15 +17,15 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" 
-                   Text="Читательский билет" 
-                   FontSize="20" FontWeight="Bold" 
-                   HorizontalAlignment="Center" 
-                   Margin="0,0,0,20"/>
+           x:Name="TicketTitleText"
+           FontSize="20" FontWeight="Bold" 
+           HorizontalAlignment="Center" 
+           Margin="0,0,0,20"/>
 
         <Border Grid.Row="1" 
                 BorderBrush="LightGray" 
                 BorderThickness="1" 
-                Background="LightYellow" 
+                Background="LightBlue" 
                 Padding="10" 
                 Margin="0,0,0,15">
             <Grid>
@@ -48,65 +48,89 @@
                            x:Name="ReaderNameText" 
                            Margin="0,0,0,5"/>
 
-                <TextBlock Grid.Row="0" Grid.Column="2" 
-                           Text="Номер билета:" 
+                <TextBlock Grid.Row="1" Grid.Column="0" 
+                           Text="Дата рождения:" 
                            FontWeight="Bold" 
-                           Margin="10,0,5,5"/>
-                <TextBlock Grid.Row="0" Grid.Column="3" 
-                           x:Name="TicketNumberText" 
+                           Margin="0,0,5,5"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" 
+                           x:Name="BirthdayText" 
                            Margin="0,0,0,5"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" 
-                           Text="Категория:" 
+                <TextBlock Grid.Row="2" Grid.Column="2" 
+                           Text="Номер телефона:" 
                            FontWeight="Bold" 
-                           Margin="0,0,5,0"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" 
-                           x:Name="CategoryText" 
-                           Margin="0,0,0,0"/>
+                           Margin="0,0,5,5"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" 
+                           x:Name="PhoneNumberText" 
+                           Margin="0,0,0,5"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="2" 
-                           Text="Скидка:" 
+                <TextBlock Grid.Row="0" Grid.Column="2" 
+                           Text="Email:" 
                            FontWeight="Bold" 
-                           Margin="10,0,5,0"/>
-                <TextBlock Grid.Row="1" Grid.Column="3" 
-                           x:Name="DiscountText" 
-                           Margin="0,0,0,0"/>
+                           Margin="0,0,5,5"/>
+                <TextBlock Grid.Row="0" Grid.Column="3" 
+                           x:Name="EmailText" 
+                           Margin="0,0,0,5"/>
             </Grid>
         </Border>
 
         <GroupBox Grid.Row="2" 
                   Header="Книги в прокате" 
                   Margin="0,0,0,15">
-            <DataGrid x:Name="LoansDataGrid" 
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      SelectionMode="Single"
-                      SelectionChanged="LoansDataGrid_SelectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID проката" 
-                                      Binding="{Binding Id}" 
-                                      Width="80"/>
-                    <DataGridTextColumn Header="Название книги" 
-                                      Binding="{Binding Book.Title}" 
-                                      Width="200"/>
-                    <DataGridTextColumn Header="Автор" 
-                                      Binding="{Binding Book.Author}" 
-                                      Width="150"/>
-                    <DataGridTextColumn Header="Дата выдачи" 
-                                      Binding="{Binding Issuance_date, StringFormat=dd.MM.yyyy}" 
-                                      Width="100"/>
-                    <DataGridTextColumn Header="Ожидаемая дата возврата" 
-                                      Binding="{Binding ExpectedReturnDate, StringFormat=dd.MM.yyyy}" 
-                                      Width="150"/>
-                    <DataGridTextColumn Header="Статус" 
-                                      Binding="{Binding Status}" 
-                                      Width="100"/>
-                    <DataGridTextColumn Header="Стоимость проката" 
-                                      Binding="{Binding Final_price, StringFormat={}{0} руб.}" 
-                                      Width="120"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Панель фильтрации -->
+                <StackPanel Grid.Row="0" 
+                            Orientation="Horizontal" 
+                            Margin="0,0,0,5"
+                            VerticalAlignment="Center">
+                    
+          <CheckBox
+          Content="Только книги в прокате"
+          VerticalAlignment="Center"
+          Margin="0,0,10,0"
+          Checked="CheckBox_Changed"
+          Unchecked="UnCheckBox_Changed"/>
+                </StackPanel>
+
+                <!-- Таблица прокатов -->
+                <DataGrid Grid.Row="1"
+                          x:Name="LoansDataGrid" 
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          SelectionChanged="LoansDataGrid_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="№ проката" 
+                                          Binding="{Binding Id}" 
+                                          Width="80"/>
+                        <DataGridTextColumn Header="Название книги" 
+                                          Binding="{Binding Book.Title}" 
+                                          Width="200"/>
+                        <DataGridTextColumn Header="Автор" 
+                                          Binding="{Binding Book.Author}" 
+                                          Width="200"/>
+                        <DataGridTextColumn Header="Дата выдачи" 
+                                          Binding="{Binding IssuanceDate, StringFormat=dd.MM.yyyy}" 
+                                          Width="90"/>
+                        <DataGridTextColumn Header="Дата возврата" 
+                                          Binding="{Binding ReturnDate, StringFormat=dd.MM.yyyy}" 
+                                          Width="90"/>
+                        <DataGridTextColumn Header="Статус" 
+                                          Binding="{Binding Status}" 
+                                          Width="80"/>
+                        <DataGridTextColumn Header="Стоимость проката" 
+                                          Binding="{Binding FinalPrice, StringFormat={}{0} руб.}" 
+                                          Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
         </GroupBox>
 
         <StackPanel Grid.Row="3" 
