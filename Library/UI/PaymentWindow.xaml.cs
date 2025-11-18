@@ -39,7 +39,7 @@ namespace UI
             _fine = fine;
             _finalPrice = finalPrice;
 
-            PaymentWindow_Loaded("Прием книги", _fine + _finalPrice);
+            PaymentWindow_Loaded("Прием книги", _finalPrice);
         }
 
         private void PaymentWindow_Loaded(string text, int amount)
