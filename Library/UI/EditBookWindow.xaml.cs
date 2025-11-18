@@ -18,6 +18,7 @@ namespace UI
             _bookRepository = bookRepository;
             _editBook = new Book();
             InitializeComponent();
+            SetWindowTitle();
         }
 
         public EditBookWindow(IBookRepository bookRepository, Book book)
@@ -27,6 +28,21 @@ namespace UI
             _editBook = book;
             InitializeComponent();
             LoadDataBook(book);
+            SetWindowTitle();
+        }
+
+        private void SetWindowTitle()
+        {
+            if (_isEditBook)
+            {
+                Title = "Редактирование книги";
+                WindowTitleText.Text = "Редактирование книги";
+            }
+            else
+            {
+                Title = "Добавление новой книги";
+                WindowTitleText.Text = "Добавление новой книги";
+            }
         }
 
         private void CloseButtonClick(object sender, RoutedEventArgs e)
@@ -107,12 +123,6 @@ namespace UI
             if(int.Parse(TotalCopiesTextBox.Text) < int.Parse(AvailableCopiesTextBox.Text))
             {
                 MessageBox.Show("Число доступных экземпляров не может быть больше общего количества!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
-            }
-
-            if(_bookRepository.ContainsBook(_editBook))
-            {
-                MessageBox.Show("Книга с такими параметрами уже существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
 

@@ -4,8 +4,7 @@
     {
         public required int Year { get; set; }
         public required int Month { get; set; }
-        public required decimal Total { get; set; }
-        public required int RentalsCount { get; set; }
+        public required int Total { get; set; }
 
         public string GetMonthName()
         {

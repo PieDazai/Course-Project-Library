@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="Оплата" Height="500" Width="600"
+        Title="Оплата" Height="600" Width="900"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
@@ -68,34 +68,33 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="9"/>
+                    <ColumnDefinition Width="99.727"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" 
                            Text="Способ оплаты:" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,15"/>
-                <ComboBox Grid.Row="0" Grid.Column="1" 
+                           VerticalAlignment="Top" 
+                           Margin="0,7,10,0" Grid.ColumnSpan="2"/>
+                <ComboBox Grid.Row="0" Grid.Column="2" 
                           x:Name="PaymentMethodComboBox" 
                           Height="30"
                           Margin="0,0,0,15"
                           SelectionChanged="PaymentMethodComboBox_SelectionChanged">
                     <ComboBoxItem Content="Банковская карта" IsSelected="True"/>
                     <ComboBoxItem Content="Наличные"/>
-                    <ComboBoxItem Content="Электронный кошелек"/>
-                    <ComboBoxItem Content="Мобильный платеж"/>
                 </ComboBox>
 
-
+                <!-- Поля для банковской карты -->
                 <TextBlock Grid.Row="1" Grid.Column="0" 
                            Text="Номер карты:" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,15"/>
-                <TextBox Grid.Row="1" Grid.Column="1" 
+                           VerticalAlignment="Top" 
+                           Margin="0,7,10,0"
+                           x:Name="CardNumberText" Grid.ColumnSpan="2"/>
+                <TextBox Grid.Row="1" Grid.Column="2" 
                          x:Name="CardNumberTextBox" 
                          Height="30" 
                          Padding="5"
@@ -103,9 +102,10 @@
                          TextChanged="CardNumberTextBox_TextChanged"
                          Margin="0,0,0,15"/>
 
-                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" 
                             Orientation="Horizontal" 
-                            Margin="0,0,0,15">
+                            Margin="0,0,0,15"
+                            x:Name="CardDetailsPanel">
                     <TextBlock Text="Срок действия:" 
                                VerticalAlignment="Center" 
                                Margin="0,0,10,0"/>
@@ -133,39 +133,27 @@
 
                 <TextBlock Grid.Row="3" Grid.Column="0" 
                            Text="Держатель карты:" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,15"/>
-                <TextBox Grid.Row="3" Grid.Column="1" 
+                           VerticalAlignment="Top" 
+                           Margin="0,7,10,0"
+                           x:Name="CardHolderText" Grid.ColumnSpan="2"/>
+                <TextBox Grid.Row="3" Grid.Column="2" 
                          x:Name="CardHolderTextBox" 
                          Height="30" 
                          Padding="5"
                          TextChanged="CardHolderTextBox_TextChanged"
                          Margin="0,0,0,15"/>
 
-                <TextBlock Grid.Row="4" Grid.Column="0" 
-                           x:Name="WalletText" 
-                           Text="Номер кошелька:" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,15"
-                           Visibility="Collapsed"/>
-                <TextBox Grid.Row="4" Grid.Column="1" 
-                         x:Name="WalletTextBox" 
-                         Height="30" 
-                         Padding="5"
-                         Visibility="Collapsed"
-                         Margin="0,0,0,15"/>
-
-                <TextBlock Grid.Row="5" Grid.Column="0" 
-                           x:Name="PhoneText" 
-                           Text="Номер телефона:" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,0"
-                           Visibility="Collapsed"/>
-                <TextBox Grid.Row="5" Grid.Column="1" 
-                         x:Name="PhoneTextBox" 
-                         Height="30" 
-                         Padding="5"
-                         Visibility="Collapsed"/>
+                <!-- Сообщение для наличной оплаты -->
+                <TextBlock Grid.Row="4" Grid.Column="2"
+                           x:Name="CashMessageText" 
+                           Text="Оплата наличными будет произведена при получении услуги." 
+                           VerticalAlignment="Top" 
+                           HorizontalAlignment="Left"
+                           FontStyle="Italic"
+                           Foreground="Gray"
+                           TextWrapping="Wrap"
+                           Visibility="Collapsed"
+                           Margin="155,8,0,0"/>
             </Grid>
         </GroupBox>
 
@@ -177,7 +165,7 @@
                 Padding="10" 
                 Margin="0,0,0,15">
             <TextBlock x:Name="ValidationText" 
-                       Text="Заполните все обязательные поля" 
+                       Text="Заполните все обязательные поля для оплаты картой" 
                        Foreground="Gray" 
                        TextWrapping="Wrap"/>
         </Border>
@@ -194,7 +182,7 @@
                     Background="Green"
                     Foreground="White"
                     FontWeight="Bold"
-                    IsEnabled="False"/>
+                    IsEnabled="True"/>
 
             <Button x:Name="CancelButton" 
                     Content="Отмена" 

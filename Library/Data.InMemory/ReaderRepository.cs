@@ -19,10 +19,6 @@ namespace Data.InMemory
             return true;
         }
 
-        public bool ContainsReader(Reader reader)
-        {
-            return ReaderList.Contains(reader);
-        }
 
         public bool Delete(Reader reader)
         {

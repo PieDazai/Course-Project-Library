@@ -1,7 +1,6 @@
 ﻿using Data.Interfaces;
 using Domain;
 using Services;
-using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -87,7 +86,6 @@ namespace UI
             CalculateDataLoad();
             LoadDataForReturn();
         }
-
         private void LostCheckBox_Changed(object sender, RoutedEventArgs e)
         {
             LostAmountTextBox.IsEnabled = LostCheckBox.IsChecked == true;
@@ -159,7 +157,7 @@ namespace UI
                     }
                 }
 
-                int overdueFine = (int)(_loan.Book.RentalCost * _daysOverdue);
+                int overdueFine = _loan.Book.RentalCost * _daysOverdue;
 
                 _finalPrice = _loan.Book.RentalCost * _totalDays + overdueFine + _fine;
 

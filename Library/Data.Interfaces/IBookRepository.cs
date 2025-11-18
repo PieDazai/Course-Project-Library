@@ -9,7 +9,6 @@ namespace Data.Interfaces
         bool Add(Book book);
         bool Update(Book book);
         bool Delete(Book book);
-        bool ContainsBook(Book book);
 
     }
 }

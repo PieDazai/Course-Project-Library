@@ -11,10 +11,12 @@ namespace UI
         private IReaderRepository _readerRepository = new ReaderRepository();
         private ILoanRepository _loanRepository = new LoanRepository();
         private LoanService _loanService;
+        private StatisticsService _statisticsService;
         public MainWindow()
         {
             InitializeComponent();
             _loanService = new LoanService(_loanRepository, _bookRepository);
+            _statisticsService = new StatisticsService(_loanRepository, _readerRepository);
         }
 
         private void Catalog_Click(object sender, RoutedEventArgs e)
@@ -33,6 +35,12 @@ namespace UI
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Statistic_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticsWindow statisticsWindow = new StatisticsWindow(_statisticsService);
+            statisticsWindow.ShowDialog();
         }
     }
 }

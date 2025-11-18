@@ -27,6 +27,9 @@
                     Height="40" Margin="10,5" FontSize="14"
                     Click="User_Click" Background="LightSteelBlue"/>
 
+            <Button x:Name="btnStatistic" Content="Статитсика" 
+                    Height="40" Margin="10,5" FontSize="14" 
+                    Click="Statistic_Click" Background="LightSteelBlue"/>
             <Button x:Name="btnExit" Content="Выход" 
                     Height="40" Margin="10,5" FontSize="14"
                     Click="Exit_Click" Background="LightGray"/>

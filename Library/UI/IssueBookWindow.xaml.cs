@@ -54,16 +54,8 @@ namespace UI
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    if (_loanRepository.Add(_loanService.IssueBook(book, _reader)))
-                    {
-                        MessageBox.Show($"Книга выдана", "Успех",
-                                      MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ошибка при выдаче книги", "Ошибка",
-                                      MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
+                    PaymentWindow paymentWindow = new PaymentWindow(_loanRepository, _loanService, book, _reader);
+                    paymentWindow.ShowDialog();
                 }
             }
             else
@@ -78,7 +70,18 @@ namespace UI
 
         private void BooksDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            IssueBookButton.IsEnabled = (BooksDataGrid.SelectedItem is Book book);
+            if(BooksDataGrid.SelectedItem is Book book)
+            {
+                IssueBookButton.IsEnabled = true;
+                SelectedBookDetails.Text = $"Название: {book.Title}\nАвтор: {book.Author}";
+                DepositAmountText.Text = book.Deposit.ToString() + " руб";
+                TotalAmountText.Text = DepositAmountText.Text;
+            }
+            else
+            {
+                IssueBookButton.IsEnabled = false;
+                DepositAmountText.Text = DepositAmountText.Text;
+            }
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)

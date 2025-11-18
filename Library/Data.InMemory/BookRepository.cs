@@ -59,14 +59,5 @@ namespace Data.InMemory
 
             return false;
         }
-
-        public bool ContainsBook(Book book)
-        {
-            return BookList.Any(b =>
-                b.Title.Equals(book.Title, StringComparison.OrdinalIgnoreCase) &&
-                b.Author.Equals(book.Author, StringComparison.OrdinalIgnoreCase) &&
-                b.Genre.Equals(book.Genre, StringComparison.OrdinalIgnoreCase) &&
-                b.PublishedYear == book.PublishedYear);
-        }
 }
     }

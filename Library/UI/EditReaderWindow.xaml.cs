@@ -19,6 +19,7 @@ namespace UI
             _readerEdit = new Reader();
             _readerRepository = readerRepository;
             InitializeComponent();
+            SetWindowTitle();
         }
 
         public EditReaderWindow(IReaderRepository readerRepository, Reader reader)
@@ -28,8 +29,22 @@ namespace UI
             _isEditReader = true;
             InitializeComponent();
             LoadReaderData();
+            SetWindowTitle();
         }
 
+        private void SetWindowTitle()
+        {
+            if (_isEditReader)
+            {
+                Title = "Редактирование данных читателя";
+                WindowTitleText.Text = "Редактирование данных читателя";
+            }
+            else
+            {
+                Title = "Добавление нового читателя";
+                WindowTitleText.Text = "Добавление нового читателя";
+            }
+        }
 
         private void LoadReaderData()
         {

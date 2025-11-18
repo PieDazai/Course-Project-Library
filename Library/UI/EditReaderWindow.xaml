@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="Редактирование читателя" Height="450" Width="600"
+        Title="Редактирование читателя" Height="500" Width="700"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 

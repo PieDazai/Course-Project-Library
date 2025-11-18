@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="Выдача книги читателю" Height="600" Width="800"
+        Title="Выдача книги читателю" Height="600" Width="900"
         WindowStartupLocation="CenterScreen">
 
     <Grid Margin="10">
@@ -175,15 +175,8 @@
                     <TextBlock Text="Выбранная книга:" 
                                FontWeight="Bold" 
                                Margin="0,0,0,5"/>
-                    <TextBlock x:Name="SelectedBookTitle" 
-                               Text="Не выбрана" 
-                               Margin="0,0,0,2"/>
-                    <TextBlock x:Name="SelectedBookAuthor" 
-                               FontStyle="Italic" 
-                               Margin="0,0,0,2"/>
-                    <TextBlock x:Name="SelectedBookDetails" 
-                               FontSize="10" 
-                               Foreground="Gray"/>
+                    <TextBlock x:Name="SelectedBookDetails"
+                               FontWeight="Bold"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" 
@@ -209,14 +202,7 @@
                                    Margin="0,0,10,2"/>
                         <TextBlock Grid.Row="0" Grid.Column="1" 
                                    x:Name="DepositAmountText" 
-                                   Text="0 руб."/>
-
-                        <TextBlock Grid.Row="1" Grid.Column="0" 
-                                   Text="Скидка:" 
-                                   Margin="0,0,10,2"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" 
-                                   x:Name="DiscountAmountText" 
-                                   Text="0 руб."/>
+                                   Text="0 руб"/>
 
                         <Rectangle Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
                                    Height="1" 
