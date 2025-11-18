@@ -46,18 +46,12 @@ namespace UI
 
             if (result == MessageBoxResult.Yes)
             {
-                _loan.Fine = _fine;
-                _loan.FinalPrice = _finalPrice;
+                PaymentWindow paymentWindow = new PaymentWindow(_loanRepository, _loanService, _loan, _fine, _finalPrice);
 
-                if (_loanService.ReturnBook(_loan))
+                if (paymentWindow.ShowDialog() == true)
                 {
-                    MessageBox.Show("Прокат успешно завершен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                     DialogResult = true;
                     Close();
-                }
-                else
-                {
-                    MessageBox.Show("Ошибка завершения проката", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -114,7 +108,7 @@ namespace UI
 
                 OverdueText.Text = (_daysOverdue > 0) ? _daysOverdue.ToString() + " дней" : "0 дней";
 
-                int overdueFine = (_daysOverdue > 0) ? (int)(_loan.Book.RentalCost * _daysOverdue * 0.5) : 0;
+                int overdueFine = (_daysOverdue > 0) ? _loan.Book.RentalCost * _daysOverdue : 0;
                 OverdueFineText.Text = overdueFine.ToString() + " руб";
 
                 TotalCostText.Text = _finalPrice.ToString() + " руб";
@@ -141,6 +135,7 @@ namespace UI
                 _daysOverdue = Math.Max(0, _totalDays - 14);
 
                 _fine = 0;
+
                 if (DamageAmountTextBox != null)
                 {
                     if (int.TryParse(DamageAmountTextBox.Text, out int damage))

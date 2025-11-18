@@ -6,9 +6,7 @@
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
         Title="Возврат книги" Height="600" Width="900"
-        WindowStartupLocation="CenterScreen"
-        SizeToContent="WidthAndHeight"
-        MinWidth="800" MinHeight="500">
+        WindowStartupLocation="CenterScreen">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>

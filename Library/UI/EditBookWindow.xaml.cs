@@ -47,8 +47,18 @@ namespace UI
 
         private void CloseButtonClick(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
-            Close();
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите закрыть окно? " +
+                    "Все несохраненные изменения будут потеряны.",
+                                           "Подтверждение закрытия",
+                                           MessageBoxButton.YesNo,
+                                           MessageBoxImage.Question,
+                                           MessageBoxResult.No);
+
+            if(result == MessageBoxResult.Yes)
+            {
+                DialogResult = false;
+                Close();
+            }
         }
 
         private void LoadDataBook(Book book)

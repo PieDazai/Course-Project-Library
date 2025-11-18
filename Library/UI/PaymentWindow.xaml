@@ -25,9 +25,9 @@
                    Margin="0,0,0,20"/>
 
         <Border Grid.Row="1" 
+                Background="LightGreen"
                 BorderBrush="LightGray" 
                 BorderThickness="1" 
-                Background="WhiteSmoke" 
                 Padding="15" 
                 Margin="0,0,0,20">
             <Grid>
@@ -54,7 +54,7 @@
                            x:Name="AmountText" 
                            FontSize="16" 
                            FontWeight="Bold" 
-                           Foreground="Green"/>
+                           Foreground="Green" Height="21" VerticalAlignment="Bottom"/>
             </Grid>
         </Border>
 
@@ -70,16 +70,15 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="9"/>
-                    <ColumnDefinition Width="99.727"/>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" 
                            Text="Способ оплаты:" 
-                           VerticalAlignment="Top" 
-                           Margin="0,7,10,0" Grid.ColumnSpan="2"/>
-                <ComboBox Grid.Row="0" Grid.Column="2" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,0"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" 
                           x:Name="PaymentMethodComboBox" 
                           Height="30"
                           Margin="0,0,0,15"
@@ -89,71 +88,50 @@
                 </ComboBox>
 
                 <!-- Поля для банковской карты -->
-                <TextBlock Grid.Row="1" Grid.Column="0" 
-                           Text="Номер карты:" 
-                           VerticalAlignment="Top" 
-                           Margin="0,7,10,0"
-                           x:Name="CardNumberText" Grid.ColumnSpan="2"/>
-                <TextBox Grid.Row="1" Grid.Column="2" 
-                         x:Name="CardNumberTextBox" 
-                         Height="30" 
-                         Padding="5"
-                         MaxLength="19"
-                         TextChanged="CardNumberTextBox_TextChanged"
-                         Margin="0,0,0,15"/>
-
-                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" 
-                            Orientation="Horizontal" 
-                            Margin="0,0,0,15"
-                            x:Name="CardDetailsPanel">
-                    <TextBlock Text="Срок действия:" 
+                <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                            x:Name="CardPaymentPanel"
+                            Margin="0,0,0,15">
+                    <TextBlock Text="Номер карты:" 
                                VerticalAlignment="Center" 
-                               Margin="0,0,10,0"/>
-                    <TextBox x:Name="ExpiryDateTextBox" 
-                             Width="80" 
+                               Margin="0,0,0,5"/>
+                    <TextBox x:Name="CardNumberTextBox" 
                              Height="30" 
                              Padding="5"
-                             MaxLength="5"
-                             Text="MM/YY"
-                             GotFocus="ExpiryDateTextBox_GotFocus"
-                             LostFocus="ExpiryDateTextBox_LostFocus"
-                             TextChanged="ExpiryDateTextBox_TextChanged"
-                             Margin="0,0,30,0"/>
+                             MaxLength="19"/>
 
-                    <TextBlock Text="CVV:" 
-                               VerticalAlignment="Center" 
-                               Margin="0,0,10,0"/>
-                    <TextBox x:Name="CvvTextBox" 
-                             Width="60" 
-                             Height="30" 
-                             Padding="5"
-                             MaxLength="3"
-                             TextChanged="CvvTextBox_TextChanged"/>
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="0,10,0,0">
+                        <TextBlock Text="Срок действия:" 
+                                   VerticalAlignment="Center" 
+                                   Margin="0,0,10,0"/>
+                        <TextBox x:Name="ExpiryDateTextBox" 
+                                 Width="80" 
+                                 Height="30" 
+                                 Padding="5"
+                                 MaxLength="5"
+                                 Margin="0,0,30,0"/>
+
+                        <TextBlock Text="CVV:" 
+                                   VerticalAlignment="Center" 
+                                   Margin="0,0,10,0"/>
+                        <TextBox x:Name="CvvTextBox" 
+                                 Width="60" 
+                                 Height="30" 
+                                 Padding="5"
+                                 MaxLength="3"/>
+                    </StackPanel>
                 </StackPanel>
 
-                <TextBlock Grid.Row="3" Grid.Column="0" 
-                           Text="Держатель карты:" 
-                           VerticalAlignment="Top" 
-                           Margin="0,7,10,0"
-                           x:Name="CardHolderText" Grid.ColumnSpan="2"/>
-                <TextBox Grid.Row="3" Grid.Column="2" 
-                         x:Name="CardHolderTextBox" 
-                         Height="30" 
-                         Padding="5"
-                         TextChanged="CardHolderTextBox_TextChanged"
-                         Margin="0,0,0,15"/>
-
                 <!-- Сообщение для наличной оплаты -->
-                <TextBlock Grid.Row="4" Grid.Column="2"
+                <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                            x:Name="CashMessageText" 
                            Text="Оплата наличными будет произведена при получении услуги." 
-                           VerticalAlignment="Top" 
-                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center" 
                            FontStyle="Italic"
                            Foreground="Gray"
                            TextWrapping="Wrap"
                            Visibility="Collapsed"
-                           Margin="155,8,0,0"/>
+                           Margin="0,10,0,0"/>
             </Grid>
         </GroupBox>
 
@@ -173,7 +151,6 @@
         <StackPanel Grid.Row="4" 
                     Orientation="Horizontal" 
                     HorizontalAlignment="Right">
-
             <Button x:Name="PayButton" 
                     Content="Оплатить" 
                     Padding="20,10"
@@ -181,9 +158,7 @@
                     Click="PayButton_Click"
                     Background="Green"
                     Foreground="White"
-                    FontWeight="Bold"
-                    IsEnabled="True"/>
-
+                    FontWeight="Bold"/>
             <Button x:Name="CancelButton" 
                     Content="Отмена" 
                     Padding="20,10"
