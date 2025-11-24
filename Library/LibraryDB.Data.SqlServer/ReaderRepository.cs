@@ -39,16 +39,18 @@ namespace LibraryDB.Data.SqlServer
         {
             var query = _dbContext.Readers.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(filter.FullName)) query = query
-                    .Where(r => r.FullName.Contains(filter.FullName));
+            if (!string.IsNullOrWhiteSpace(filter.FullName))
+                query = query.Where(r => r.FullName.ToLower().Contains(filter.FullName.ToLower()));
 
-            if (!string.IsNullOrWhiteSpace(filter.PhoneNumber)) query = query
-                    .Where(r => Regex.Replace(r.PhoneNumber, @"\D", "").Contains(filter.PhoneNumber));
+            if (!string.IsNullOrWhiteSpace(filter.PhoneNumber))
+            {
+                // Убираем все нецифровые символы из поискового запроса
+                string digitsOnly = new string(filter.PhoneNumber.Where(char.IsDigit).ToArray());
+                query = query.Where(r => r.PhoneNumber.Contains(digitsOnly));
+            }
 
-            if (filter.TicketNumber.HasValue) query = query
-                    .Where(r => r.Id == filter.TicketNumber);
-
-
+            if (filter.TicketNumber.HasValue)
+                query = query.Where(r => r.Id == filter.TicketNumber.Value);
 
             return query.ToList();
         }

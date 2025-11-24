@@ -8,15 +8,16 @@ namespace UI
 
     public partial class MainWindow : Window
     {
-        private IBookRepository _bookRepository = new BookRepository();
-        private IReaderRepository _readerRepository = new ReaderRepository();
-        private ILoanRepository _loanRepository = new LoanRepository();
+        private IBookRepository _bookRepository;
+        private IReaderRepository _readerRepository;
+        private ILoanRepository _loanRepository;
         private LoanService _loanService;
         private StatisticsService _statisticsService;
-        public MainWindow()
+        public MainWindow(IBookRepository bookRepository, IReaderRepository readerRepository, ILoanRepository loanRepository)
         {
-
-
+            _bookRepository = bookRepository;
+            _readerRepository = readerRepository;
+            _loanRepository = loanRepository;
             InitializeComponent();
             _loanService = new LoanService(_loanRepository, _bookRepository);
             _statisticsService = new StatisticsService(_loanRepository, _readerRepository);

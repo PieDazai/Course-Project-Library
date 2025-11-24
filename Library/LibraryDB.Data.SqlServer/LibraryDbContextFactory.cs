@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace LibraryDB.Data.SqlServer
 {
-    internal class LibraryDbContextFactory : IDesignTimeDbContextFactory<LibraryDbContext>
+    public class LibraryDbContextFactory : IDesignTimeDbContextFactory<LibraryDbContext>
     {
         public LibraryDbContext CreateDbContext(string[] args)
         {

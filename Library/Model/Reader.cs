@@ -1,10 +1,7 @@
-﻿using System.Text.RegularExpressions;
-
-namespace Domain
+﻿namespace Domain
 {
     public class Reader
     {
-        private static readonly string PHONE_NUMBER_FORMAT = @"(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})";
         public int Id { get; set; }
         public string FullName { get; set; }
         public string Address { get; set; }

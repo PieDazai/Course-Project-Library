@@ -8,7 +8,6 @@ namespace Services
         private readonly ILoanRepository _loanRepository;
         private readonly IBookRepository _bookRepository;
 
-        private int CurrentId = 0;
 
         public LoanService(ILoanRepository loanRepository, IBookRepository bookRepository)
         {
@@ -21,7 +20,6 @@ namespace Services
             if (book != null && reader != null)
             {
                 Loan loan = new Loan();
-                loan.Id = ++CurrentId;
                 loan.IssuanceDate = DateOnly.FromDateTime(DateTime.Now);
                 loan.Status = "В прокате";
                 loan.Reader = reader;
