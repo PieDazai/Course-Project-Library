@@ -5,6 +5,7 @@ using System.Windows;
 
 namespace UI
 {
+
     public partial class MainWindow : Window
     {
         private IBookRepository _bookRepository = new BookRepository();
@@ -14,6 +15,8 @@ namespace UI
         private StatisticsService _statisticsService;
         public MainWindow()
         {
+
+
             InitializeComponent();
             _loanService = new LoanService(_loanRepository, _bookRepository);
             _statisticsService = new StatisticsService(_loanRepository, _readerRepository);

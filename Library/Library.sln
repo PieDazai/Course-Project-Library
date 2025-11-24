@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.InMemory", "Data.InMem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{8F5B3266-3A05-496B-B0CA-44D76750549F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryDB.Data.SqlServer", "LibraryDB.Data.SqlServer\LibraryDB.Data.SqlServer.csproj", "{27F68EA7-DE2B-4150-8191-D4A83D8CC6A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{8F5B3266-3A05-496B-B0CA-44D76750549F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F5B3266-3A05-496B-B0CA-44D76750549F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F5B3266-3A05-496B-B0CA-44D76750549F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27F68EA7-DE2B-4150-8191-D4A83D8CC6A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27F68EA7-DE2B-4150-8191-D4A83D8CC6A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27F68EA7-DE2B-4150-8191-D4A83D8CC6A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27F68EA7-DE2B-4150-8191-D4A83D8CC6A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
