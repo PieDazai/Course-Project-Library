@@ -193,7 +193,7 @@
                                   Unchecked="DamageUnCheckBox_Changed"/>
                         <TextBox x:Name="DamageAmountTextBox" 
                                  Width="80" 
-                                 Height="25"
+                                 Height="30"
                                  Padding="5"
                                  Text="0"
                                  TextChanged="DamageAmountTextBox_TextChanged"
@@ -211,7 +211,7 @@
                                   Unchecked="LostCheckBox_Changed"/>
                         <TextBox x:Name="LostAmountTextBox" 
                                  Width="80" 
-                                 Height="25"
+                                 Height="30"
                                  Padding="5"
                                  Text="0"
                                  TextChanged="LostAmountTextBox_TextChanged"

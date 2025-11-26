@@ -9,6 +9,5 @@ namespace Data.Interfaces
         bool Delete(Reader reader);
         bool Update(Reader reader);
         bool Add(Reader reader);
-        string FormatNumber(string number);
     }
 }

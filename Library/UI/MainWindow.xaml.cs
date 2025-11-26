@@ -13,14 +13,15 @@ namespace UI
         private ILoanRepository _loanRepository;
         private LoanService _loanService;
         private StatisticsService _statisticsService;
-        public MainWindow(IBookRepository bookRepository, IReaderRepository readerRepository, ILoanRepository loanRepository)
+        public MainWindow(IBookRepository bookRepository, IReaderRepository readerRepository, ILoanRepository loanRepository, 
+            LoanService loanService, StatisticsService statisticsService)
         {
             _bookRepository = bookRepository;
             _readerRepository = readerRepository;
             _loanRepository = loanRepository;
             InitializeComponent();
-            _loanService = new LoanService(_loanRepository, _bookRepository);
-            _statisticsService = new StatisticsService(_loanRepository, _readerRepository);
+            _loanService = loanService;
+            _statisticsService = statisticsService;
         }
 
         private void Catalog_Click(object sender, RoutedEventArgs e)

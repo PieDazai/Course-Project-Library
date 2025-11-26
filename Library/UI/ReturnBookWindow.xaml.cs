@@ -1,6 +1,7 @@
 ﻿using Data.Interfaces;
 using Domain;
 using Services;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -25,6 +26,12 @@ namespace UI
             InitializeComponent();
             CalculateDataLoad();
             LoadDataForReturn();
+            UpdatePaymentButton(true);
+        }
+
+        private void UpdatePaymentButton(bool flag)
+        {
+            if(ReturnBookButton != null) ReturnBookButton.IsEnabled = flag;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -56,11 +63,6 @@ namespace UI
             }
         }
 
-        private void LostAmountTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CalculateDataLoad();
-            LoadDataForReturn();
-        }
 
         private void DamageCheckBox_Changed(object sender, RoutedEventArgs e)
         {
@@ -77,8 +79,28 @@ namespace UI
 
         private void DamageAmountTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if(CorrectFineValues(DamageAmountTextBox.Text) == false) 
+            {
+                MessageBox.Show("Введите корректный штраф!", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                UpdatePaymentButton(false);
+                return;
+            }
             CalculateDataLoad();
             LoadDataForReturn();
+            UpdatePaymentButton(true);
+        }
+
+        private void LostAmountTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (CorrectFineValues(LostAmountTextBox.Text) == false)
+            {
+                MessageBox.Show("Введите корректный штраф!", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                UpdatePaymentButton(false);
+                return;
+            }
+            CalculateDataLoad();
+            LoadDataForReturn();
+            UpdatePaymentButton(true); ;
         }
         private void LostCheckBox_Changed(object sender, RoutedEventArgs e)
         {
@@ -164,6 +186,12 @@ namespace UI
                 MessageBox.Show($"Ошибка расчета стоимости: {ex.Message}", "Ошибка",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private bool CorrectFineValues(string text)
+        {
+            Regex regex = new Regex("^[0-9]+$");
+            return regex.IsMatch(text) || string.IsNullOrEmpty(text);
         }
     }
 }

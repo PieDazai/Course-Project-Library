@@ -167,11 +167,7 @@ namespace UI
             _readerEdit.Address = AddressTextBox.Text.Trim();
             _readerEdit.Email = EmailTextBox.Text.Trim();
             _readerEdit.BirthDate = DateOnly.Parse(BirthDateTextBox.Text);
-
-            if (!PhoneTextBox.Text.Equals(_readerEdit.PhoneNumber))
-            {
-                _readerEdit.PhoneNumber = _readerRepository.FormatNumber(PhoneTextBox.Text);
-            }
+            _readerEdit.PhoneNumber = PhoneTextBox.Text;
         }
     }
 }

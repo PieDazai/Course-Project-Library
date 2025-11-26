@@ -1,13 +1,11 @@
 ﻿using Data.Interfaces;
 using Domain;
-using System.Text.RegularExpressions;
 
 namespace LibraryDB.Data.SqlServer
 {
     public class ReaderRepository : IReaderRepository
     {
         private readonly LibraryDbContext _dbContext;
-        private static readonly string PHONE_NUMBER_FORMAT = @"(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})";
 
         public ReaderRepository(LibraryDbContext dbContext)
         {
@@ -27,12 +25,6 @@ namespace LibraryDB.Data.SqlServer
             _dbContext.Readers.Remove(reader);
             _dbContext.SaveChanges();
             return true;
-        }
-
-        public string FormatNumber(string number)
-        {
-            string result = Regex.Replace(number, @"[^\d]", "");
-            return Regex.Replace(result, PHONE_NUMBER_FORMAT, "$1 ($2) $3-$4-$5");
         }
 
         public List<Reader> GetAll(ReaderFilter filter)

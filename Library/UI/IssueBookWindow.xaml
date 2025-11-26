@@ -81,49 +81,56 @@
                            Margin="0,0,0,5"/>
                 </Grid>
             </StackPanel>
-        </Border>   
+        </Border>
 
         <!-- Панель поиска книг -->
         <GroupBox Grid.Row="2" 
-                  Header="Поиск книги" 
-                  Margin="0,0,0,10">
-            <StackPanel Orientation="Horizontal">
+          Header="Поиск книги" 
+          Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBlock Text="Название:" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,5,0"/>
+                   VerticalAlignment="Center" 
+                   Margin="0,0,5,0"/>
                 <TextBox x:Name="TitleSearchTextBox" 
-                         Width="150" 
-                         Height="25"
-                         Padding="5"
-                         Margin="0,0,15,0"/>
+                 Width="150" 
+                 Height="30"
+                 VerticalAlignment="Center"
+                 Padding="5"
+                 Margin="0,0,15,0"/>
 
                 <TextBlock Text="Автор:" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,5,0"/>
+                   VerticalAlignment="Center" 
+                   Margin="0,0,5,0"/>
                 <TextBox x:Name="AuthorSearchTextBox" 
-                         Width="150" 
-                         Height="25"
-                         Padding="5"
-                         Margin="0,0,15,0"/>
+                 Width="150" 
+                 Height="30"
+                 VerticalAlignment="Center"
+                 Padding="5"
+                 Margin="0,0,15,0" 
+                 TextChanged="AuthorSearchTextBox_TextChanged"/>
 
                 <TextBlock Text="Жанр:" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,5,0"/>
+                   VerticalAlignment="Center" 
+                   Margin="0,0,5,0"/>
                 <TextBox x:Name="GenreTextBox" 
-                          Width="120" 
-                          Height="25"
-                          Margin="0,0,15,0"/>
+                 Width="120" 
+                 Height="30"
+                 VerticalAlignment="Center"
+                 Padding="5"
+                 Margin="0,0,15,0"/>
 
                 <Button x:Name="SearchButton" 
-                        Content="Поиск" 
-                        Padding="10,5"
-                        Margin="0,0,10,0"
-                        Click="SearchButton_Click"/>
+                Content="Поиск" 
+                Padding="10,5"
+                VerticalAlignment="Center"
+                Margin="0,0,10,0"
+                Click="SearchButton_Click"/>
 
                 <Button x:Name="ResetButton" 
-                        Content="Сброс" 
-                        Padding="10,5"
-                        Click="ResetButton_Click"/>
+                Content="Сброс" 
+                Padding="10,5"
+                VerticalAlignment="Center"
+                Click="ResetButton_Click"/>
             </StackPanel>
         </GroupBox>
 

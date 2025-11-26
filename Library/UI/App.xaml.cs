@@ -14,8 +14,9 @@ namespace UI
         private IReaderRepository _readerRepository = null!;
         private IBookRepository _bookRepository = null!;
         private ILoanRepository _loanRepository = null!;
-        private StatisticsService _statisticsService = null!;
         private LibraryDbContext _dbContext = null!;
+        private LoanService _loanService = null!;
+        private StatisticsService _statisticsService = null!;
 
 
         protected override void OnStartup(StartupEventArgs e)
@@ -39,12 +40,14 @@ namespace UI
             _readerRepository = new LibraryDB.Data.SqlServer.ReaderRepository(_dbContext);
             _bookRepository = new LibraryDB.Data.SqlServer.BookRepository(_dbContext);
             _loanRepository = new LibraryDB.Data.SqlServer.LoanRepository(_dbContext);
+            _loanService = new LoanService(_loanRepository, _bookRepository);
+            _statisticsService = new StatisticsService(_loanRepository, _readerRepository);
 
             // 5. Заполнение тестовыми данными (только если БД пустая)
             SeedInitData();
 
             // 6. Запуск главного окна
-            var mainWindow = new MainWindow(_bookRepository, _readerRepository, _loanRepository);
+            var mainWindow = new MainWindow(_bookRepository, _readerRepository, _loanRepository, _loanService, _statisticsService);
             mainWindow.Show();
         }
 
@@ -159,6 +162,145 @@ namespace UI
                 BirthDate = DateOnly.FromDateTime(new DateTime(1995, 3, 10))
             };
             _readerRepository.Add(reader3);
+
+            // Сохраняем изменения, чтобы получить ID созданных книг и читателей
+            _dbContext.SaveChanges();
+
+            // Создание тестовых выдач книг
+            var loan1 = new Loan
+            {
+                Book = book1,
+                Reader = reader1,
+                IssuanceDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-10)),
+                ReturnDate = null,
+                Fine = 0,
+                Status = "В прокате",
+                FinalPrice = 0
+            };
+            _loanRepository.Add(loan1);
+            book1.AvailableCopies--;
+            _bookRepository.Update(book1);
+
+            var loan2 = new Loan
+            {
+                Book = book2,
+                Reader = reader2,
+                IssuanceDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-5)),
+                ReturnDate = null,
+                Fine = 0,
+                Status = "В прокате",
+                FinalPrice = 0
+            };
+            _loanRepository.Add(loan2);
+            book2.AvailableCopies--;
+            _bookRepository.Update(book2);
+
+            // Исправленная выдача №3 - завершенный заем с просрочкой
+            var loan3 = new Loan
+            {
+                Book = book3,
+                Reader = reader3,
+                IssuanceDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-35)),
+                ReturnDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-5)), // Возвращена с опозданием
+                Fine = 300, // Штраф за просрочку
+                Status = "Завершен",
+                FinalPrice = 1800 + 300 // Аренда + штраф
+            };
+            _loanRepository.Add(loan3);
+
+            var loan4 = new Loan
+            {
+                Book = book4,
+                Reader = reader1,
+                IssuanceDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-30)),
+                ReturnDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-10)),
+                Fine = 0,
+                Status = "Завершен",
+                FinalPrice = 1100 // 20 дней аренды
+            };
+            _loanRepository.Add(loan4);
+
+            var loan5 = new Loan
+            {
+                Book = book5,
+                Reader = reader2,
+                IssuanceDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-3)),
+                ReturnDate = null,
+                Fine = 0,
+                Status = "В прокате",
+                FinalPrice = 0
+            };
+            _loanRepository.Add(loan5);
+            book5.AvailableCopies--;
+            _bookRepository.Update(book5);
+
+            // Дополнительные выдачи
+            var loan6 = new Loan
+            {
+                Book = book1,
+                Reader = reader3,
+                IssuanceDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-15)),
+                ReturnDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-5)),
+                Fine = 0,
+                Status = "Завершен",
+                FinalPrice = 500 // 10 дней аренды
+            };
+            _loanRepository.Add(loan6);
+
+            var loan7 = new Loan
+            {
+                Book = book3,
+                Reader = reader1,
+                IssuanceDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-7)),
+                ReturnDate = null,
+                Fine = 0,
+                Status = "В прокате",
+                FinalPrice = 0
+            };
+            _loanRepository.Add(loan7);
+            book3.AvailableCopies--;
+            _bookRepository.Update(book3);
+
+            var loan8 = new Loan
+            {
+                Book = book4,
+                Reader = reader2,
+                IssuanceDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-20)),
+                ReturnDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-15)),
+                Fine = 0,
+                Status = "Завершен",
+                FinalPrice = 275 // 5 дней аренды
+            };
+            _loanRepository.Add(loan8);
+
+            var loan9 = new Loan
+            {
+                Book = book2,
+                Reader = reader3,
+                IssuanceDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-25)),
+                ReturnDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-20)),
+                Fine = 150, // Штраф за просрочку
+                Status = "Завершен",
+                FinalPrice = 225 + 150 // Аренда + штраф
+            };
+            _loanRepository.Add(loan9);
+
+            var loan10 = new Loan
+            {
+                Book = book5,
+                Reader = reader1,
+                IssuanceDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-2)),
+                ReturnDate = null,
+                Fine = 0,
+                Status = "В прокате",
+                FinalPrice = 0
+            };
+            _loanRepository.Add(loan10);
+            book5.AvailableCopies--;
+            _bookRepository.Update(book5);
+
+            // Сохраняем все изменения в БД
+            _dbContext.SaveChanges();
         }
 
         protected override void OnExit(ExitEventArgs e)

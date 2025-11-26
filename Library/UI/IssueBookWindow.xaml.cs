@@ -113,5 +113,10 @@ namespace UI
         {
             BooksDataGrid.ItemsSource = _bookRepository.GetAll(filter);
         }
+
+        private void AuthorSearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
