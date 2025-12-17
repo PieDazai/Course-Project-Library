@@ -130,7 +130,7 @@ namespace UI
                 return false;
             }
 
-            if(int.Parse(TotalCopiesTextBox.Text) < int.Parse(AvailableCopiesTextBox.Text))
+            if(totalCopies < availableCopiesTextBox)
             {
                 MessageBox.Show("Число доступных экземпляров не может быть больше общего количества!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;

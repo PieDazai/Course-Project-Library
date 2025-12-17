@@ -79,7 +79,7 @@ namespace UI
                 }
                 else
                 {
-                    if (_loanRepository.Add(_loanService.IssueBook(_book, _reader)))
+                    if (_loanService.IssueBook(_book, _reader) != null)
                     {
                         MessageBox.Show($"Книга выдана", "Успех",
                                       MessageBoxButton.OK, MessageBoxImage.Information);

@@ -1,5 +1,6 @@
 ﻿using Data.Interfaces;
 using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace LibraryDB.Data.SqlServer
 {
@@ -20,7 +21,10 @@ namespace LibraryDB.Data.SqlServer
 
         public List<Loan>? GetAll(LoanFilter filter)
         {
-            var query = _dbContext.Loans.AsQueryable();
+            var query = _dbContext.Loans
+                //.Include(l => l.Book)
+                //.Include(l => l.Reader)
+                .AsQueryable();
 
             if (filter.StartDate.HasValue)
                 query = query.Where(l => l.IssuanceDate >= filter.StartDate.Value);
@@ -42,7 +46,10 @@ namespace LibraryDB.Data.SqlServer
 
         public Loan GetById(int id)
         {
-            return _dbContext.Loans.Find(id);
+            return _dbContext.Loans
+                //.Include(l => l.Book)
+                //.Include(l => l.Reader)
+                .FirstOrDefault(l => l.Id == id);
         }
 
         public bool Update(Loan loan)

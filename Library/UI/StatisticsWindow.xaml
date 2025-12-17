@@ -20,7 +20,7 @@
 
         <TabControl Grid.Row="1">
             <!-- Вкладка 1: Круговая диаграмма по возрастам -->
-            <TabItem Header="Возраст читателей">
+            <TabItem Header="Возрастные категории">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

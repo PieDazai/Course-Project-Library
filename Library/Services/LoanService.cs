@@ -27,6 +27,8 @@ namespace Services
                 book.AvailableCopies--;
                 _bookRepository.Update(book);
 
+                _loanRepository.Add(loan);
+
                 return loan;
             }
             return null;

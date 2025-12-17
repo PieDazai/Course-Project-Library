@@ -36,13 +36,13 @@ namespace LibraryDB.Data.SqlServer
                 query = query.Where(b => b.AvailableCopies > 0);
 
             if (!string.IsNullOrWhiteSpace(filter.Genre))
-                query = query.Where(b => b.Genre.ToLower().Contains(filter.Genre.ToLower()));
+                query = query.Where(b => b.Genre.Contains(filter.Genre));
 
             if (!string.IsNullOrWhiteSpace(filter.Author))
-                query = query.Where(b => b.Author.ToLower().Contains(filter.Author.ToLower()));
+                query = query.Where(b => b.Author.Contains(filter.Author));
 
             if (!string.IsNullOrWhiteSpace(filter.Title))
-                query = query.Where(b => b.Title.ToLower().Contains(filter.Title.ToLower()));
+                query = query.Where(b => b.Title.Contains(filter.Title));
 
             return query.ToList();
         }

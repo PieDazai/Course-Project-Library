@@ -32,7 +32,7 @@ namespace LibraryDB.Data.SqlServer
             var query = _dbContext.Readers.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(filter.FullName))
-                query = query.Where(r => r.FullName.ToLower().Contains(filter.FullName.ToLower()));
+                query = query.Where(r => r.FullName.Contains(filter.FullName));
 
             if (!string.IsNullOrWhiteSpace(filter.PhoneNumber))
             {

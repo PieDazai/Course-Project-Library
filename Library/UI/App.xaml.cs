@@ -17,8 +17,6 @@ namespace UI
         private LibraryDbContext _dbContext = null!;
         private LoanService _loanService = null!;
         private StatisticsService _statisticsService = null!;
-
-
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -37,9 +35,9 @@ namespace UI
             _dbContext.Database.Migrate();
 
             // 4. Создание репозиториев на основе DbContext
-            _readerRepository = new LibraryDB.Data.SqlServer.ReaderRepository(_dbContext);
-            _bookRepository = new LibraryDB.Data.SqlServer.BookRepository(_dbContext);
-            _loanRepository = new LibraryDB.Data.SqlServer.LoanRepository(_dbContext);
+            _readerRepository = new ReaderRepository(_dbContext);
+            _bookRepository = new BookRepository(_dbContext);
+            _loanRepository = new LoanRepository(_dbContext);
             _loanService = new LoanService(_loanRepository, _bookRepository);
             _statisticsService = new StatisticsService(_loanRepository, _readerRepository);
 
